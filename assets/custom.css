@@ -1,3 +1,7 @@
+/*------- Font family ---------*/
+@import url('https://fonts.googleapis.com/css2?family=Anton&display=swap');
+/*-----------------------------*/
+
 :focus-visible {
 	outline: none;
 	box-shadow: none;
@@ -23,6 +27,7 @@
 	display: inline-block;
 	width: 100%;
 	text-align: left;
+	position: absolute;
 }
 
 .brands_wrapper {
@@ -40,6 +45,10 @@
 
 .announcement-bar a {
 	color: inherit;
+}
+
+.announcement-bar__message-wrapper {
+	visibility: hidden;
 }
 
 .announcement-bar .flickity-button {
@@ -176,25 +185,130 @@
 }
 
 .header-nav .list-menu__item {
-	font-weight: 600;
     letter-spacing: 0;
     text-transform: uppercase;
     padding: 15px;
+    font-size: 19px;
+    color: #000;
 }
 
 .header-nav .header__inline-menu {
 	padding-top: 3px;
 	padding-bottom: 3px;
+	margin-left: auto;
+	margin-right: auto;
+    font-family: 'Anton', sans-serif;
 }
 
 .header-nav	 .btn-amazon {
     border: solid 2px #000;
     border-radius: 5px;
     text-decoration: auto;
-    font-weight: 600;
     letter-spacing: 0;
     padding: 3px 15px;
     color: #000;
     float: right;
-    margin-top: 5px;
+    margin-top: 8px;
+    font-size: 16px;
+    text-transform: uppercase;
+}
+
+.header .header__icon--cart .icon {
+	width: 2.3rem;
+	height: auto;
+	margin-right: 3px;
+}
+
+@media screen and (max-width: 989px) {
+	.header {
+		display: flex;
+	    padding-left: 1.5rem;
+		padding-right: 1.5rem;
+	}
+
+	.header .header__heading {
+		width: calc(100% - 150px);
+	}
+
+	.header .search-modal__content {
+		padding-left: 2em;
+		padding-right: 2em;
+	}
+
+	.header-drawer {
+		margin-left: 10px;
+	}
+
+	.header header-drawer {
+	    margin-left: 15px;
+	}
+
+	.header header-drawer .header__icon--menu span {
+		justify-content: center;
+	}
+}
+
+@media screen and (min-width: 768px) {
+	.showMobile {
+		display: none !important;
+	}
+}
+
+@media screen and (max-width: 767px) {
+	.showDesktop {
+		display: none !important;
+	}
+
+	.search-modal__content {
+		display: none;
+	}
+
+	.announcement-bar {
+		justify-content: center;
+	}
+
+	.header__search .search-modal__content {
+		display: flex;
+	    justify-content: flex-start;
+	}
+
+	.header__search .search-modal__content .search-modal__form {
+		width: calc(100% - 30px);
+	}
+
+	.header .header__icon--account {
+		width: auto;
+	}
+
+	.header .header__heading {
+		text-align: left;
+	}
+
+	.header-drawer {
+		margin-left: 0;
+	}
+
+	.header__icon {
+		width: auto;
+		margin: 0 8px;
+		display: inline-block;
+	}
+
+	.header__icon--menu .icon.icon-hamburger {
+		position: relative;
+	}
+
+	.header .header__icon--cart {
+		width: auto;
+	}
+
+	.header header-drawer {
+		margin-left: 0;
+	}
+}
+
+@media screen and (max-width: 350px) {
+	.announcement-bar .brand-item {
+		padding: 9px;
+	}
 }

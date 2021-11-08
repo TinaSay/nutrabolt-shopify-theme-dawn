@@ -5,7 +5,6 @@ jQuery(document).ready(function($){
 	var prevNextButtons = true;
 	if ($(window).width() < 768) {
 		draggable = true;
-		prevNextButtons = false;
 	}
 	$(".announcement-bar__message-wrapper").flickity({
 		draggable: draggable,
@@ -18,5 +17,14 @@ jQuery(document).ready(function($){
 		  x2: 70, y2: 40,
 		  x3: 30
 		}
+	});
+
+	$(".announcement-bar__message-wrapper").css("visibility", "visible");
+
+	$(".image-banner-slider").flickity({
+		draggable: draggable,
+		pageDots: true,
+		autoplay: true,
+		prevNextButtons: false
 	});
 });
