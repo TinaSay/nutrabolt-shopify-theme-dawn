@@ -2,7 +2,7 @@
 <link rel="stylesheet" href="{{ 'component-slider.css' | asset_url }}" media="print" onload="this.media='all'">
 <noscript>{{ 'component-slider.css' | asset_url | stylesheet_tag }}</noscript>
 
-<div class="multicolumn background-{{ section.settings.background_style }}{% if section.settings.title == blank %} no-heading{% endif %}">
+<div class="multicolumn background-{{ section.settings.background_style }}{% if section.settings.title == blank %} no-heading{% endif %}  aaa {{section.settings.section_type}}">
   <div class="page-width">
     <div class="title-wrapper-with-link title-wrapper--self-padded-mobile{% if section.settings.title == blank %} title-wrapper-with-link--no-heading{% endif %}">
       <h2 class="title">
@@ -101,6 +101,34 @@
   "class": "spaced-section spaced-section--full-width",
   "tag": "section",
   "settings": [
+    {
+      "type": "select",
+      "options": [
+        {
+          "label": "Type1",
+          "value": "style1"
+        },
+        {
+          "label": "Type2",
+          "value": "style2"
+        },
+        {
+          "label": "Type3",
+          "value": "style3"
+        },
+        {
+          "label": "Type4",
+          "value": "style4"
+        },
+        {
+          "label": "Icons Row",
+          "value": "style5"
+        }
+      ],
+      "id": "section_type",
+      "label": "Section Type",
+      "default": "style1"
+    },
     {
       "type": "text",
       "id": "title",

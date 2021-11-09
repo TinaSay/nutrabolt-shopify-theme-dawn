@@ -252,20 +252,20 @@
   position: relative;
 }
 
-#shopify-section-template--15177470869700__multi_column .multicolumn-card .multicolumn-card__info {
+.multicolumn.style1 .multicolumn-card .multicolumn-card__info {
   position: absolute;
   bottom: 0px;
   left: 20px;
 }
 
-#shopify-section-template--15177470869700__multi_column .multicolumn-card .multicolumn-card__info h3 {
+.multicolumn.style1 .multicolumn-card .multicolumn-card__info h3 {
   color: #FFF;
   font-family: 'Anton';
   font-size: 36px;
   text-transform: uppercase;
 }
 
-#shopify-section-template--15177470869700__multi_column .multicolumn-card .multicolumn-card__info .button-column {
+.multicolumn.style1 .multicolumn-card .multicolumn-card__info .button-column {
   background: #ffe500;
   color: #000;
   font-family: 'Anton';
@@ -277,21 +277,21 @@
   letter-spacing: 0;  
 }
 
-#shopify-section-template--15177470869700__multi_column .multicolumn-card .multicolumn-card__image-wrapper {
+.multicolumn.style1 .multicolumn-card .multicolumn-card__image-wrapper {
   margin: 0;
 }
 
-#shopify-section-template--15177470869700__multi_column .title-wrapper-with-link {
+.multicolumn.style1 .title-wrapper-with-link {
   display: none;
 }
 
 @media screen and (max-width: 991px) {
-  #shopify-section-template--15177470869700__multi_column {
+  .multicolumn.style1 {
     margin-top: 40px;
     margin-bottom: 40px;
   }
 
-  #shopify-section-template--15177470869700__multi_column .multicolumn-card .multicolumn-card__info {
+  .multicolumn.style1 .multicolumn-card .multicolumn-card__info {
     position: relative;
     text-align: center;
     width: 100%;
@@ -299,12 +299,54 @@
     padding: 15px;
   }
 
-  #shopify-section-template--15177470869700__multi_column .multicolumn-card .multicolumn-card__info h3 {
+  .multicolumn.style1 .multicolumn-card .multicolumn-card__info h3 {
     color: #000;
   }
 
-  #shopify-section-template--15177470869700__multi_column .multicolumn {
+  .multicolumn.style1 .multicolumn {
     margin: 40px 0;
   }
+}
+
+.multicolumn.style5 .multicolumn-card .media {
+  padding: 0 !important;
+}
+
+.multicolumn.style5 .multicolumn-card .media img {
+  left: unset;
+  transform: none;
+  width: 40px;
+  position: relative;
+}
+
+.multicolumn.style5 .multicolumn-card {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.multicolumn.style5 .multicolumn-card__image-wrapper {
+  padding: 0;
+  margin: 0;
+}
+
+.multicolumn.style5 .multicolumn-card__info {
+  padding: 0;
+  margin-left: 10px;
+}
+
+.multicolumn.style5 .multicolumn-card__info h3 { 
+  font-family: 'Anton';
+  font-size: 22px;
+  text-transform: uppercase;
+}
+
+.multicolumn.style5 {
+  padding: 50px 0;
+  background: #FFE500;
+}
+
+.multicolumn.style5 .multicolumn-list {
+  margin: 0;
 }
 /*--------------------------------------------------------------------------------------------------------------*/
