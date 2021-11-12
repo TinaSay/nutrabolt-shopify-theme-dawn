@@ -17,66 +17,24 @@
 <footer class="footer color-{{ section.settings.color_scheme }} gradient">
   {%- if section.blocks.size > 0 or section.settings.newsletter_enable or section.settings.show_social -%}
     <div class="footer__content-top page-width">
-      {%- if section.blocks.size > 0 -%}
-        {%- liquid
-          if section.blocks.size == 9
-            assign footer_grid_class = 'grid--3-col-tablet'
-          elsif section.blocks.size > 6
-            assign footer_grid_class = 'grid--4-col-desktop'
-          elsif section.blocks.size > 4
-            assign footer_grid_class = 'grid--3-col-tablet'
-          endif
-        -%}
-        <div class="footer__blocks-wrapper grid grid--1-col grid--2-col grid--4-col-tablet {{ footer_grid_class }}">
-          {%- for block in section.blocks -%}
-            <div class="footer-block grid__item{% if block.type == 'link_list' and block.settings.heading != blank %} footer-block--menu{% endif %}" {{ block.shopify_attributes }}>
-              {%- if block.settings.heading != blank -%}
-                <h2 class="footer-block__heading">{{- block.settings.heading | escape -}}</h2>
-              {%- endif -%}
-
-              {%- case block.type -%}
-                {%- when 'text' -%}
-                  <div class="footer-block__details-content rte">
-                    {{ block.settings.subtext }}
-                  </div>
-                {%- when 'link_list' -%}
-                  {%- if block.settings.menu != blank and block.settings.heading != blank -%}
-                    <ul class="footer-block__details-content list-unstyled">
-                      {%- for link in block.settings.menu.links -%}
-                        <li>
-                          <a href="{{ link.url }}" class="link link--text list-menu__item list-menu__item--link{% if link.active %} list-menu__item--active{% endif %}">
-                            {{ link.title }}
-                          </a>
-                        </li>
-                      {%- endfor -%}
-                    </ul>
-                  {%- endif -%}
-                {%- when 'image' -%}
-                  <div class="footer-block__details-content footer-block-image {{ block.settings.alignment }}">
-                    {%- if block.settings.image != blank -%}
-                      {%- assign image_size = block.settings.image_width | append: 'x' -%}
-                      <img
-                        srcset= "{{ block.settings.image | img_url: image_size }}, {{ block.settings.image | img_url: image_size, scale: 2 }} 2x"
-                        src="{{ block.settings.image | img_url: '400x' }}"
-                        alt="{{ block.settings.image.alt | escape }}"
-                        loading="lazy"
-                        width="{{ block.settings.image.width }}"
-                        height="{{ block.settings.image.height }}"
-                        style="max-width: min(100%, {{ block.settings.image_width }}px);"
-                      >
-                    {%- else -%}
-                      {{ 'image' | placeholder_svg_tag: 'placeholder-svg placeholder' }}
-                    {%- endif -%}
-                  </div>
-                {%- endcase -%}
-            </div>
-          {%- endfor -%}
-        </div>
-      {%- endif -%}
-
       <div class="footer-block--newsletter">
         {%- if section.settings.newsletter_enable -%}
           <div class="footer-block__newsletter">
+            <h2 class="footer-logo">
+              <svg id="Group_3217" data-name="Group 3217" xmlns="http://www.w3.org/2000/svg" width="239.387" height="37.121" viewBox="0 0 239.387 37.121">
+                <path id="Path_2921" data-name="Path 2921" d="M1002.813,43.64l6.478-36.2H1024l-1.252,6.995h-7.228l-1.259,7.037h6.928L1019.97,28.3h-6.928l-1.486,8.3h7.7L1018,43.64Z" transform="translate(-888.15 -6.605)" fill="#ffe500"/>
+                <path id="Path_2922" data-name="Path 2922" d="M1164.228,41.414l6.478-36.2h7.57l.279,17.319,3.1-17.319h7.1l-6.478,36.2h-7.185l-.435-18.119-3.243,18.119Z" transform="translate(-1031.108 -4.63)" fill="#ffe500"/>
+                <path id="Path_2923" data-name="Path 2923" d="M1355.583,41.414l6.478-36.2h14.712l-1.252,6.995h-7.228l-1.259,7.037h6.928l-1.222,6.826h-6.928l-1.486,8.3h7.7l-1.259,7.037Z" transform="translate(-1200.583 -4.63)" fill="#ffe500"/>
+                <path id="Path_2924" data-name="Path 2924" d="M1523.475,7.444h11.291a5.573,5.573,0,0,1,3.955,1.2,4.841,4.841,0,0,1,1.385,3.371,24.631,24.631,0,0,1-.479,5.541,13.147,13.147,0,0,1-1.672,4.8,5.826,5.826,0,0,1-3.252,2.4,2.686,2.686,0,0,1,2.122,1.643,6.666,6.666,0,0,1,.115,3.54L1534.4,43.64h-7.185l2.534-14.158q.272-1.517-.252-1.938a3.618,3.618,0,0,0-2.106-.422l-2.956,16.518H1517Zm6.84,13.4q1.54,0,2.128-3.287a13.4,13.4,0,0,0,.256-2.149,1.333,1.333,0,0,0-.293-.99,1.341,1.341,0,0,0-.935-.274h-1.711l-1.2,6.7Z" transform="translate(-1343.541 -6.605)" fill="#ffe500"/>
+                <path id="Path_2925" data-name="Path 2925" d="M1712.037,36.336q-1.453-2.759-.449-8.364l2.79-15.591A13.314,13.314,0,0,1,1718,4.8a10.092,10.092,0,0,1,7.217-2.57q3.635,0,5.389,1.433a5.9,5.9,0,0,1,2.033,4.172,26.288,26.288,0,0,1-.49,7.037h-7.185l.581-3.245a4.332,4.332,0,0,0,0-2.023,1.086,1.086,0,0,0-1.176-.716q-2.1,0-2.578,2.7l-3.137,17.529a5.4,5.4,0,0,0-.017,2.486,1.248,1.248,0,0,0,1.346.843,1.88,1.88,0,0,0,1.647-.843,6.477,6.477,0,0,0,.873-2.486l.927-5.183h-1.967l1.116-6.236h8.981l-3.77,21.069h-2.951l-.7-3.034a8.018,8.018,0,0,1-6.676,3.371Q1713.489,39.1,1712.037,36.336Z" transform="translate(-1515.519 -1.975)" fill="#ffe500"/>
+                <path id="Path_2926" data-name="Path 2926" d="M1925.126,43.64l2.134-11.925-1.516-24.271h7.27l-.141,12.262,4.247-12.262h7.271l-10.2,24.271-2.134,11.925Z" transform="translate(-1705.004 -6.605)" fill="#ffe500"/>
+                <path id="Path_2927" data-name="Path 2927" d="M40.713,22.482H53.281q-.348,2.618-.483,3.376a14.448,14.448,0,0,1-2.577,6.464q-2.039,2.617-6.769,3.559t-15.938.942q-11.782,0-16.711-.393a21.676,21.676,0,0,1-7.266-1.518A5.882,5.882,0,0,1,.644,32.166a9.767,9.767,0,0,1-.6-4.738q.164-2.433,1.3-8.794,1.11-6.2,1.874-8.951A14.2,14.2,0,0,1,5.038,5.418q2.331-3.4,7.768-4.41T34.194,0q7.975,0,11.544.314A18.485,18.485,0,0,1,51.3,1.492a5.677,5.677,0,0,1,3.346,3.415q.742,2.264-.044,6.661-.042.236-.349,1.78H41.684a13.3,13.3,0,0,0,.169-2.382,1.476,1.476,0,0,0-.5-.995q-.627-.55-3.513-.8T29,8.925q-5.891,0-8.2.223a8.1,8.1,0,0,0-3.359.877,5.43,5.43,0,0,0-2.029,2.643,31.059,31.059,0,0,0-1.5,5.915,28.55,28.55,0,0,0-.63,5.719A3.014,3.014,0,0,0,14.372,26.7a6.607,6.607,0,0,0,3.2.943q2.269.235,8.129.235,7.22,0,9.659-.209a7.12,7.12,0,0,0,3.411-.916Q40.053,25.832,40.713,22.482Z" transform="translate(0)" fill="#ffe500"/>
+                <path id="Path_2928" data-name="Path 2928" d="M517.61,27.564,516.173,35.6h-8.012l-1.15,6.426H495.476l1.15-6.426H463.851l2.436-13.613L493.422,6.679h20.029l-3.738,20.885Zm-19.806,0,2.228-12.451h-2.474L476.876,26.187l-.246,1.378Z" transform="translate(-410.814 -5.927)" fill="#ffe500"/>
+                <g id="Group_3216" data-name="Group 3216" transform="translate(103.324 2.664)">
+                  <path id="Path_2929" data-name="Path 2929" d="M906.75,25.141a1.556,1.556,0,1,1-1.55-1.491A1.509,1.509,0,0,1,906.75,25.141Zm-2.722,0a1.164,1.164,0,0,0,1.181,1.191,1.149,1.149,0,0,0,1.153-1.182,1.168,1.168,0,1,0-2.334-.009Zm.932.782h-.351V24.432a3.1,3.1,0,0,1,.581-.046.954.954,0,0,1,.526.109.412.412,0,0,1,.147.327.384.384,0,0,1-.313.346v.018a.441.441,0,0,1,.276.364,1.116,1.116,0,0,0,.111.373h-.379a1.285,1.285,0,0,1-.12-.363c-.027-.164-.12-.237-.313-.237h-.166Zm.009-.845h.166c.194,0,.351-.064.351-.218,0-.136-.1-.227-.323-.227a.838.838,0,0,0-.194.018Z" transform="translate(-903.641 -23.65)" fill="#ffe500"/>
+                </g>
+              </svg>
+            </h2>
             {%- if section.settings.newsletter_heading != blank -%}
               <h2 class="footer-block__heading">{{ section.settings.newsletter_heading | escape }}</h2>
             {%- endif -%}
@@ -101,7 +59,7 @@
                     {% elsif form.posted_successfully? %}
                       aria-describedby="ContactFooter-success"
                     {% endif %}
-                    placeholder="{{ 'newsletter.label' | t }}"
+                    placeholder="Enter your email address"
                     required
                   >
                   <label class="field__label" for="NewsletterForm--{{ section.id }}">
@@ -199,6 +157,63 @@
           </ul>
         {%- endif -%}
       </div>
+
+      {%- if section.blocks.size > 0 -%}
+        {%- liquid
+          if section.blocks.size == 9
+            assign footer_grid_class = 'grid--3-col-tablet'
+          elsif section.blocks.size > 6
+            assign footer_grid_class = 'grid--4-col-desktop'
+          elsif section.blocks.size > 4
+            assign footer_grid_class = 'grid--3-col-tablet'
+          endif
+        -%}
+        <div class="footer__blocks-wrapper grid grid--1-col grid--2-col grid--4-col-tablet {{ footer_grid_class }}">
+          {%- for block in section.blocks -%}
+            <div class="footer-block grid__item{% if block.type == 'link_list' and block.settings.heading != blank %} footer-block--menu{% endif %}" {{ block.shopify_attributes }}>
+              {%- if block.settings.heading != blank -%}
+                <h2 class="footer-block__heading">{{- block.settings.heading | escape -}}</h2>
+              {%- endif -%}
+
+              {%- case block.type -%}
+                {%- when 'text' -%}
+                  <div class="footer-block__details-content rte">
+                    {{ block.settings.subtext }}
+                  </div>
+                {%- when 'link_list' -%}
+                  {%- if block.settings.menu != blank and block.settings.heading != blank -%}
+                    <ul class="footer-block__details-content list-unstyled">
+                      {%- for link in block.settings.menu.links -%}
+                        <li>
+                          <a href="{{ link.url }}" class="link link--text list-menu__item list-menu__item--link{% if link.active %} list-menu__item--active{% endif %}">
+                            {{ link.title }}
+                          </a>
+                        </li>
+                      {%- endfor -%}
+                    </ul>
+                  {%- endif -%}
+                {%- when 'image' -%}
+                  <div class="footer-block__details-content footer-block-image {{ block.settings.alignment }}">
+                    {%- if block.settings.image != blank -%}
+                      {%- assign image_size = block.settings.image_width | append: 'x' -%}
+                      <img
+                        srcset= "{{ block.settings.image | img_url: image_size }}, {{ block.settings.image | img_url: image_size, scale: 2 }} 2x"
+                        src="{{ block.settings.image | img_url: '400x' }}"
+                        alt="{{ block.settings.image.alt | escape }}"
+                        loading="lazy"
+                        width="{{ block.settings.image.width }}"
+                        height="{{ block.settings.image.height }}"
+                        style="max-width: min(100%, {{ block.settings.image_width }}px);"
+                      >
+                    {%- else -%}
+                      {{ 'image' | placeholder_svg_tag: 'placeholder-svg placeholder' }}
+                    {%- endif -%}
+                  </div>
+                {%- endcase -%}
+            </div>
+          {%- endfor -%}
+        </div>
+      {%- endif -%}
     </div>
   {%- endif -%}
 

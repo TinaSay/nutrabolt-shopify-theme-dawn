@@ -246,6 +246,10 @@
 	.header header-drawer .header__icon--menu span {
 		justify-content: center;
 	}
+
+	.header__heading-logo {
+		max-width: 83px;
+	}
 }
 
 @media screen and (min-width: 768px) {
@@ -311,4 +315,113 @@
 	.announcement-bar .brand-item {
 		padding: 9px;
 	}
+}
+
+/*---------------------------------- Featured Collection ----------------------------------*/
+.featured-collection slider-component {
+	overflow-x: auto;
+    overflow-y: hidden;
+}
+
+.featured-collection slider-component .product-grid {
+	display: flex;
+    flex-wrap: nowrap;
+}
+
+.featured-collection slider-component::-webkit-scrollbar {
+  height: 10px;
+}
+
+/* Track */
+.featured-collection slider-component::-webkit-scrollbar-track {
+  background: #f1f1f1; 
+}
+ 
+/* Handle */
+.featured-collection slider-component::-webkit-scrollbar-thumb {
+  background: #CED1D9; 
+}
+
+/* Handle on hover */
+.featured-collection slider-component::-webkit-scrollbar-thumb:hover {
+  background: #555; 
+}
+
+.featured-collection .button {
+    border: solid 2px #000;
+    border-radius: 5px;
+    text-decoration: auto;
+    letter-spacing: 0;
+    padding: 3px 15px;
+    color: #000;
+    float: right;
+    text-transform: uppercase;
+    background: #FFF;
+    box-shadow: none;
+    font-family: 'Anton';
+    font-size: 18px;
+    width: 194px;
+    height: 56px;
+    margin: 0;
+}
+
+.featured-collection .card-information__text {
+    font-family: Helvetica;
+    font-size: 18px;
+    font-weight: 600;
+    letter-spacing: 0;
+}
+
+.featured-collection .price__regular {
+    font-family: Helvetica;
+    font-size: 18px;
+    font-weight: 600;
+    letter-spacing: 0;
+}
+
+.featured-collection .title {
+	font-size: 38px;
+    font-family: 'Anton';
+    text-transform: uppercase;
+}
+
+@media screen and (max-width: 767px) {
+	.featured-collection .title {
+		font-size: 28px;
+	}
+
+	.featured-collection .button {
+		height: 40px;
+	    width: 140px;
+	    font-size: 16px;
+	    line-height: 1;
+	}
+}
+/*-----------------------------------------------------------------------------------------*/
+
+/*--------------------------- Slider dots ----------------------------*/
+  .productline-slider .flickity-page-dots {
+    display: flex;
+    list-style: none;
+    justify-content: center;
+    padding: 0;
+    margin-top: 40px;
+  }
+
+  .productline-slider .flickity-page-dots .dot {
+    display: inline-block;
+    width: 65px;
+    height: 6px;
+    background: #a4a7b4;
+    border-radius: 5px;
+    margin: 0 5px;
+  }
+
+  .productline-slider .flickity-page-dots .dot.is-selected {
+    background: #000;
+  }
+/*--------------------------------------------------------------------*/
+
+.banner_image {
+	margin-top: 60px;
 }

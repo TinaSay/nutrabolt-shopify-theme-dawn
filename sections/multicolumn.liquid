@@ -2,8 +2,9 @@
 <link rel="stylesheet" href="{{ 'component-slider.css' | asset_url }}" media="print" onload="this.media='all'">
 <noscript>{{ 'component-slider.css' | asset_url | stylesheet_tag }}</noscript>
 
-<div class="multicolumn background-{{ section.settings.background_style }}{% if section.settings.title == blank %} no-heading{% endif %}  aaa {{section.settings.section_type}}">
+<div class="multicolumn background-{{ section.settings.background_style }}{% if section.settings.title == blank %} no-heading{% endif %}" style="background: {{section.settings.background_color}};">
   <div class="page-width">
+    {% if section.settings.title != blank or section.settings.button_label != blank and section.settings.swipe_on_mobile %}
     <div class="title-wrapper-with-link title-wrapper--self-padded-mobile{% if section.settings.title == blank %} title-wrapper-with-link--no-heading{% endif %}">
       <h2 class="title">
         {{ section.settings.title | escape }}
@@ -12,6 +13,7 @@
         <a href="{{ section.settings.button_link }}" class="link underlined-link large-up-hide">{{ section.settings.button_label | escape }}</a>
       {%- endif -%}
     </div>
+    {% endif %}
     <slider-component class="slider-mobile-gutter">
       <ul class="multicolumn-list grid grid--1-col{% if section.blocks.size > 3 and section.settings.image_width != 'full' %} grid--2-col-tablet grid--4-col-desktop{% elsif section.blocks.size > 3 and section.settings.image_width == 'full' %} grid--2-col-tablet{% else %} grid--3-col-tablet{% endif %}{% if section.settings.swipe_on_mobile and section.blocks.size > 1 %} slider slider--mobile grid--peek{% endif %}"
         id="Slider-{{ section.id }}"
@@ -20,21 +22,24 @@
         {%- liquid
           assign highest_ratio = 0
           for block in section.blocks
-            if block.settings.image.aspect_ratio > highest_ratio
+            if block.settings.image.aspect_ratio > highest_ratio and block.type != 'style3' and block.type != 'style5'
               assign highest_ratio = block.settings.image.aspect_ratio
             endif
           endfor
         -%}
         {%- for block in section.blocks -%}
-          <li class="multicolumn-list__item grid__item{% if section.settings.swipe_on_mobile %} slider__slide{% endif %}{% if section.settings.column_alignment == 'center' %} center{% endif %}" {{ block.shopify_attributes }}>
-            <div class="multicolumn-card">
+          <li class="multicolumn-list__item grid__item{% if section.settings.swipe_on_mobile %} slider__slide{% endif %}{% if section.settings.column_alignment == 'center' %} center{% endif %} {{block.type}}" {{ block.shopify_attributes }}>
+            <div class="multicolumn-card" 
+            {% if section.settings.image_ratio == 'adapt' and block.type == 'style3' %}
+              style="background: {{block.settings.background}};"
+            {% endif %}>
               {%- if block.settings.image != blank -%}
                 {% if section.settings.image_ratio == 'adapt' or section.settings.image_ratio == 'circle' %}
                   {% assign spaced_image = true %}
                 {% endif %}
-                <div class="multicolumn-card__image-wrapper multicolumn-card__image-wrapper--{{ section.settings.image_width }}-width{% if section.settings.image_width != 'full' or spaced_image %} multicolumn-card-spacing{% endif %}">
+                <div class="multicolumn-card__image-wrapper multicolumn-card__image-wrapper--{{ section.settings.image_width }}-width{% if section.settings.image_width != 'full' or spaced_image %} multicolumn-card-spacing{% endif %}" >
                   <div class="media media--transparent media--{{ section.settings.image_ratio }}"
-                    {% if section.settings.image_ratio == 'adapt' %}
+                    {% if section.settings.image_ratio == 'adapt' and block.type != 'style3' %}
                       style="padding-bottom: {{ 1 | divided_by: highest_ratio | times: 100 }}%;"
                     {% endif %}>
                     <img
@@ -57,7 +62,7 @@
               {%- endif -%}
               <div class="multicolumn-card__info">
                 {%- if block.settings.title != blank -%}
-                  <h3>{{ block.settings.title | escape }}</h3>
+                  <h3 class="{{block.settings.text_alignment}}">{{ block.settings.title }}</h3>
                 {%- endif -%}
                 {%- if block.settings.text != blank -%}
                   <div class="rte">{{ block.settings.text }}</div>
@@ -101,34 +106,6 @@
   "class": "spaced-section spaced-section--full-width",
   "tag": "section",
   "settings": [
-    {
-      "type": "select",
-      "options": [
-        {
-          "label": "Type1",
-          "value": "style1"
-        },
-        {
-          "label": "Type2",
-          "value": "style2"
-        },
-        {
-          "label": "Type3",
-          "value": "style3"
-        },
-        {
-          "label": "Type4",
-          "value": "style4"
-        },
-        {
-          "label": "Icons Row",
-          "value": "style5"
-        }
-      ],
-      "id": "section_type",
-      "label": "Section Type",
-      "default": "style1"
-    },
     {
       "type": "text",
       "id": "title",
@@ -216,6 +193,11 @@
       "label": "t:sections.multicolumn.settings.background_style.label"
     },
     {
+      "type": "color",
+      "id": "background_color",
+      "label": "Section Background Color"
+    },
+    {
       "type": "text",
       "id": "button_label",
       "default": "Button label",
@@ -235,8 +217,8 @@
   ],
   "blocks": [
     {
-      "type": "column",
-      "name": "t:sections.multicolumn.blocks.column.name",
+      "type": "style1",
+      "name": "Label and Button",
       "settings": [
         {
           "type": "image_picker",
@@ -250,7 +232,7 @@
           "label": "t:sections.multicolumn.blocks.column.settings.title.label"
         },
         {
-          "type": "richtext",
+          "type": "textarea",
           "id": "text",
           "default": "<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.</p>",
           "label": "t:sections.multicolumn.blocks.column.settings.text.label"
@@ -266,18 +248,105 @@
           "label": "Button Text"
         }
       ]
+    },
+    {
+      "type": "style2",
+      "name": "Vertical text",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Background Image"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Text"
+        },
+        {
+          "type": "select",
+          "options": [
+            {
+              "group": "position",
+              "value": "left",
+              "label": "Left"
+            },
+            {
+              "group": "position",
+              "value": "right",
+              "label": "Right"
+            }
+          ],
+          "id": "text_alignment",
+          "label": "Text alignment",
+          "default": "left"
+        },
+        {
+          "type": "url",
+          "id": "column_url",
+          "label": "Column URL"
+        }
+      ]
+    },
+    {
+      "type": "style3",
+      "name": "Text and Paragraph",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "default": "Column",
+          "label": "Heading"
+        },
+        {
+          "type": "textarea",
+          "id": "text",
+          "label": "Text"
+        },
+        {
+          "type": "url",
+          "id": "button_url",
+          "label": "Button URL"
+        },
+        {
+          "type": "text",
+          "id": "button_text",
+          "label": "Button Text"
+        },
+        {
+          "type": "color",
+          "id": "background",
+          "label": "Background Color"
+        }
+      ]
+    },
+    {
+      "type": "style5",
+      "name": "Icon",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "default": "Column",
+          "label": "Heading"
+        }
+      ]
     }
   ],
   "presets": [
     {
       "name": "t:sections.multicolumn.presets.name",
       "blocks": [
-        {
-          "type": "column"
-        },
-        {
-          "type": "column"
-        }
       ]
     }
   ]

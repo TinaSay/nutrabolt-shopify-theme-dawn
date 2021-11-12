@@ -1,0 +1,23 @@
+<div class="wrapper">
+
+  <img src="{{section.settings.banner_bg_img | img_url: 'master'}}" width="100%">
+
+</div>
+
+{% schema %}
+  {
+    "name": "Banner Image",
+    "class": "banner_image",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "banner_bg_img",
+        "label": "Background Image"
+      }
+    ],
+    "presets": [{
+      "name": "Banner Image",
+      "category": "Promotional"
+    }]
+  }
+{% endschema %}
