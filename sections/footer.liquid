@@ -318,10 +318,19 @@
             </ul>
           </div>
         {%- endif -%}
+        {% comment %}
         <div class="footer__copyright caption">
           <small class="copyright__content">&copy; {{ 'now' | date: "%Y" }}, {{ shop.name | link_to: routes.root_url }}</small>
           <small class="copyright__content">{{ powered_by_link }}</small>
         </div>
+        {% endcomment %}
+
+        <ul>
+          <li>&copy; {{ 'now' | date: "%Y" }}, {{ shop.name | link_to: routes.root_url }}</li>
+          {% for link1 in linklists[section.settings.bottom_menu].links %}
+            <li> <a href="{{link1.url}}">{{link1.title}} </a> </li>
+          {% endfor %}
+        </ul>
       </div>
     </div>
   </div>
@@ -545,6 +554,11 @@
     {
       "type": "header",
       "content": "t:sections.footer.settings.header__7.content"
+    },
+    {
+      "type": "link_list",
+      "id": "bottom_menu",
+      "label": "Bottom Menu"
     },
     {
       "type": "checkbox",
