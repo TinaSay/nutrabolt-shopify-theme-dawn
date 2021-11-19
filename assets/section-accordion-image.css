@@ -1,0 +1,83 @@
+.accordion-image .wrapper {
+    display: flex;
+    justify-content: space-between;
+}
+
+.accordion-image .wrapper .column-accordion {
+	width: 67%;
+	margin-top: 0;
+}
+
+.accordion-item {
+	border-top: solid 2px #eee;
+    color: #000;
+}
+
+.accordion-item .accordion-item-title {
+    font-family: 'Anton';
+    font-size: 24px;
+    text-transform: uppercase;
+    padding: 7px 0;
+    cursor: pointer;
+}
+
+.accordion-item .accordion-item-title:after {
+	content: "";
+	transform: rotate(225deg);
+	float: right;
+	display: inline-block;
+	width: 15px;
+	height: 15px;
+	border-left: solid 4px;
+	border-top: solid 4px;
+	margin-top: 10px;
+	margin-right: 10px;
+}
+
+.accordion-item.active .accordion-item-title:after {
+	content: "";
+	transform: rotate(45deg);
+	float: right;
+	margin-top: 18px;
+}
+
+.accordion-item .accordion-item-text {
+	font-family: Helvetica;
+}
+
+.accordion-item .accordion-item-text h3 {
+	font-family: Helvetica;
+    text-transform: uppercase;
+    font-weight: 600;
+}
+
+.accordion-image .wrapper .column-image {
+	width: 30%;
+}
+
+.accordion-image .wrapper .column-image img {
+	width: 100%;
+	height: auto;
+}
+
+@media screen and (max-width: 767px) {
+	.accordion-image .wrapper {
+		flex-wrap: wrap;
+    	flex-direction: column-reverse;
+	}
+
+	.accordion-image .wrapper .column-accordion {
+	    width: 100%;
+	}
+
+	.accordion-image .wrapper .column-image {
+		width: 100%;
+	    display: flex;
+	    justify-content: space-between;
+        padding: 50px 0 20px;
+	}
+
+	.accordion-image .wrapper .column-image .image-item {
+		width: calc(50% - 5px);
+	}
+}

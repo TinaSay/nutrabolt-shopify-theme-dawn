@@ -571,6 +571,12 @@ class VariantSelects extends HTMLElement {
     this.updatePickupAvailability();
     this.removeErrorMessage();
 
+    window.dispatchEvent(new CustomEvent('customvariantChange', {
+      detail: {
+        variant: this.currentVariant
+      }
+    }));
+
     if (!this.currentVariant) {
       this.toggleAddButton(true, '', true);
       this.setUnavailable();

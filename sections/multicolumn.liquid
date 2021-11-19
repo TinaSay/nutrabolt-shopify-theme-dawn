@@ -2,13 +2,22 @@
 <link rel="stylesheet" href="{{ 'component-slider.css' | asset_url }}" media="print" onload="this.media='all'">
 <noscript>{{ 'component-slider.css' | asset_url | stylesheet_tag }}</noscript>
 
-<div class="multicolumn background-{{ section.settings.background_style }}{% if section.settings.title == blank %} no-heading{% endif %}" style="background: {{section.settings.background_color}};">
+<div class="multicolumn background-{{ section.settings.background_style }}{% if section.settings.title == blank %} no-heading{% endif %} {{section.settings.custom_class}}" style="background: {{section.settings.background_color}};">
   <div class="page-width">
     {% if section.settings.title != blank or section.settings.button_label != blank and section.settings.swipe_on_mobile %}
     <div class="title-wrapper-with-link title-wrapper--self-padded-mobile{% if section.settings.title == blank %} title-wrapper-with-link--no-heading{% endif %}">
+      {% if section.settings.title != blank %}
       <h2 class="title">
         {{ section.settings.title | escape }}
       </h2>
+      {% endif %}
+
+      {% if section.settings.text != blank %}
+      <p class="desc">
+        {{ section.settings.text | escape }}
+      </p>
+      {% endif %}
+
       {%- if section.settings.button_label != blank and section.settings.swipe_on_mobile -%}
         <a href="{{ section.settings.button_link }}" class="link underlined-link large-up-hide">{{ section.settings.button_label | escape }}</a>
       {%- endif -%}
@@ -213,6 +222,11 @@
       "id": "swipe_on_mobile",
       "default": false,
       "label": "t:sections.multicolumn.settings.swipe_on_mobile.label"
+    },
+    {
+      "type": "text",
+      "id": "custom_class",
+      "label": "Additional Class"
     }
   ],
   "blocks": [
@@ -339,6 +353,11 @@
           "id": "title",
           "default": "Column",
           "label": "Heading"
+        },
+        {
+          "type": "textarea",
+          "id": "text",
+          "label": "Text"
         }
       ]
     }
