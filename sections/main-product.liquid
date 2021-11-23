@@ -28,6 +28,31 @@
           {%- case block.type -%}
           {%- when '@app' -%}
             {% render block %}
+          {%- when 'promo_text' -%}
+            {%- for i in (1..5) -%} 
+              {%- assign promo_tag = "promo-text" | append: i -%}
+              {%- assign promo_text = promo_tag | replace: "-","_" -%}
+              {%- if product.tags contains promo_tag and settings[promo_text] -%}
+                {%- assign promo_text_text = promo_text | append: "_text" -%}
+                {%- assign promo_text_subtext = promo_text | append: "_subtext" -%}
+                {%- assign promo_text_svg = promo_text | append: "_svg" -%}
+                {%- assign promo_text_url = promo_text | append: "_url" -%}
+                {%- assign promo_text_url_label = promo_text | append: "_url_label" -%}
+                  <div class="promo-text">
+                    <div class="promo-text-text">
+                      {%- if settings[promo_text_svg] != blank -%}{{settings[promo_text_svg]}} {% endif -%}
+                      {{settings[promo_text_text]}}
+                      {%- if settings[promo_text_url_label] != blank %} <a href="{{settings[promo_text_url]}}">{{settings[promo_text_url_label]}}</a>{% endif -%}
+                    </div>
+                    {% if settings[promo_text_subtext] != blank -%}
+                    <div class="promo-text-subtext{%- if settings[promo_text_svg] != blank %} has-svg{% endif -%}">
+                      {{settings[promo_text_subtext]}}
+                    </div>
+                    {%- endif %}
+                  </div>
+                {%- break -%}
+              {%- endif -%}
+            {%- endfor -%}
           {%- when 'text' -%}
             <p class="product__text{% if block.settings.text_style == 'uppercase' %} caption-with-letter-spacing{% elsif block.settings.text_style == 'subtitle' %} subtitle{% endif %}" {{ block.shopify_attributes }}>
               {{- block.settings.text -}}
@@ -37,10 +62,17 @@
               {{ product.title | escape }}
             </h1>
           {%- when 'price' -%}
+            {% if product.tags contains 'hide-recharge' %}
             <div class="no-js-hidden" id="price-{{ section.id }}" role="status" {{ block.shopify_attributes }}>
               {%- render 'price', product: product, use_variant: true, show_badges: true, price_class: 'price--large' -%}
             </div>
-            {%- if shop.taxes_included or shop.shipping_policy.body != blank -%}
+            {% else %}
+              <div class="product-subscription_form">
+                {%- comment -%}the default script checks if a product is available. Zach asked us to remove it.{%- endcomment -%}
+                {% include 'subscription-product' %} 
+              </div>
+            {% endif %}
+            {%- if block.settings.show_tax and shop.taxes_included or shop.shipping_policy.body != blank -%}
               <div class="product__tax caption rte">
                 {%- if shop.taxes_included -%}
                   {{ 'products.product.include_taxes' | t }}
@@ -51,8 +83,8 @@
               </div>
             {%- endif -%}
             <div {{ block.shopify_attributes }}>
-              {%- form 'product', product, id: 'product-form-installment', class: 'installment caption-large' -%}
-                <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
+              {%- form 'product', data-productid: product.id, product, id: 'product-form-installment', class: 'installment caption-large' -%}
+                <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}" data-productid="{{product.id}}">
                 {{ form | payment_terms }}
               {%- endform -%}
             </div>
@@ -60,6 +92,20 @@
             {%- if product.description != blank -%}
               <div class="product__description rte">
                 {{ product.description }}
+              </div>
+            {%- endif -%}
+          {%- when 'short_description' -%}
+            {%- if product.metafields.global.short_description.value != blank -%}
+              <div class="product__short_description rte">
+                {{ product.metafields.global.short_description.value }}
+              </div>
+              <a href="#modal-description" rel="modal:open" style="color: #888; font-size: 12px;">Learn More</a>
+
+              <div id="modal-description" class="modal">
+                <div class="product_description">
+                  {{ product.description }}
+                </div>
+                <a href="#" rel="modal:close">Close</a>
               </div>
             {%- endif -%}
           {%- when 'custom_liquid' -%}
@@ -84,10 +130,6 @@
             </div>
           {%- when 'quantity_selector' -%}
             <div class="product-form__input product-form__quantity" {{ block.shopify_attributes }}>
-              <label class="form__label" for="Quantity-{{ section.id }}">
-                {{ 'products.product.quantity.label' | t }}
-              </label>
-
               <quantity-input class="quantity">
                 <button class="quantity__button no-js-hidden" name="minus" type="button">
                   <span class="visually-hidden">{{ 'products.product.quantity.decrease' | t: product: product.title | escape }}</span>
@@ -226,7 +268,7 @@
               </div>
             </noscript>
           {%- when 'buy_buttons' -%}
-            <div {{ block.shopify_attributes }}>
+            <div class="addtocart_row" {{ block.shopify_attributes }}>
               <product-form class="product-form">
                 <div class="product-form__error-message-wrapper" role="alert" hidden>
                   <svg aria-hidden="true" focusable="false" role="presentation" class="icon icon-error" viewBox="0 0 13 13">
@@ -585,7 +627,14 @@
     {
       "type": "price",
       "name": "t:sections.main-product.blocks.price.name",
-      "limit": 1
+      "limit": 1,
+      "settings": [
+        {
+          "type": "checkbox",
+          "id": "show_tax",
+          "label": "Show Tax"
+        }
+      ]
     },
     {
       "type": "quantity_selector",
@@ -632,6 +681,16 @@
     {
       "type": "description",
       "name": "t:sections.main-product.blocks.description.name",
+      "limit": 1
+    },
+    {
+      "type": "short_description",
+      "name": "Short Description",
+      "limit": 1
+    },
+    {
+      "type": "promo_text",
+      "name": "Promo Text",
       "limit": 1
     },
     {

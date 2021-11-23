@@ -433,3 +433,28 @@ main {
 .banner_image {
 	margin-top: 60px;
 }
+
+.template-product #MainContent {
+	background: #FFF;
+}
+
+.card-item-title {
+	font-family: Helvetica;
+    font-size: 20px;
+    font-weight: 600;
+    letter-spacing: 0;
+}
+
+.card-information .price {
+	font-size: 20px;
+    font-weight: 600;
+    font-family: Helvetica;
+    letter-spacing: 0;
+}
+
+.card-information .card-item-vendor {
+	display: block;
+    margin-top: 5px;
+    font-size: 16px;
+    color: #686464;
+}

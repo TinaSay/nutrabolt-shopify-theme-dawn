@@ -6,3 +6,11 @@
   margin: 0;
   margin-bottom: 3rem;
 }
+
+.product-recommendations__heading {
+    text-align: center;
+    font-family: 'Anton';
+    text-transform: uppercase;
+    font-size: 32px;
+    letter-spacing: 0;
+}

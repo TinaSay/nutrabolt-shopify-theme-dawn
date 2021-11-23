@@ -348,5 +348,211 @@
         "default": true
       }
     ]
+  },
+  {
+    "name": "Subscriptions & Bundles",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Subscriptions"
+      },
+      {
+        "type": "richtext",
+        "id": "recharge_subscribe_message",
+        "label": "Product Subscribe Message"
+      },
+      {
+        "type": "textarea",
+        "id": "recharge_discount_subtext",
+        "label": "Recharge Product Page Subtext",
+        "default": "20% Off + Free Shipping",
+        "info": "This info is displayed below the Subscription title in the product page."
+      }
+    ]
+  },
+  {
+    "name": "Promo Call Outs",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Promo Text 1",
+        "info": "Activated by adding the tag 'promo-text1'"
+      },
+      {
+        "type": "checkbox",
+        "id": "promo_text1",
+        "label": "Enable"
+      },
+      {
+        "type": "text",
+        "id": "promo_text1_text",
+        "label": "Text"
+      },
+      {
+        "type": "text",
+        "id": "promo_text1_subtext",
+        "label": "Subtext"
+      },
+      {
+        "type": "textarea",
+        "id": "promo_text1_svg",
+        "label": "SVG Icon Code",
+        "info": "Added in front of the text"
+      },
+      {
+        "type": "url",
+        "id": "promo_text1_url",
+        "label": "Link"
+      },
+      {
+        "type": "text",
+        "id": "promo_text1_url_label",
+        "label": "Link label"
+      },
+      {
+        "type": "header",
+        "content": "Promo Text 2",
+        "info": "Activated by adding the tag 'promo-text2'"
+      },
+      {
+        "type": "checkbox",
+        "id": "promo_text2",
+        "label": "Enable"
+      },
+      {
+        "type": "text",
+        "id": "promo_text2_text",
+        "label": "Text"
+      },
+      {
+        "type": "text",
+        "id": "promo_text2_subtext",
+        "label": "Subtext"
+      },
+      {
+        "type": "textarea",
+        "id": "promo_text2_svg",
+        "label": "SVG Icon Code",
+        "info": "Added in front of the text"
+      },
+      {
+        "type": "url",
+        "id": "promo_text2_url",
+        "label": "Link"
+      },
+      {
+        "type": "text",
+        "id": "promo_text2_url_label",
+        "label": "Link label"
+      },
+      {
+        "type": "header",
+        "content": "Promo Text 3",
+        "info": "Activated by adding the tag 'promo-text3'"
+      },
+      {
+        "type": "checkbox",
+        "id": "promo_text3",
+        "label": "Enable"
+      },
+      {
+        "type": "text",
+        "id": "promo_text3_text",
+        "label": "Text"
+      },
+      {
+        "type": "text",
+        "id": "promo_text3_subtext",
+        "label": "Subtext"
+      },
+      {
+        "type": "textarea",
+        "id": "promo_text3_svg",
+        "label": "SVG Icon Code",
+        "info": "Added in front of the text"
+      },
+      {
+        "type": "url",
+        "id": "promo_text3_url",
+        "label": "Link"
+      },
+      {
+        "type": "text",
+        "id": "promo_text3_url_label",
+        "label": "Link label"
+      },
+      {
+        "type": "header",
+        "content": "Promo Text 4",
+        "info": "Activated by adding the tag 'promo-text4'"
+      },
+      {
+        "type": "checkbox",
+        "id": "promo_text4",
+        "label": "Enable"
+      },
+      {
+        "type": "text",
+        "id": "promo_text4_text",
+        "label": "Text"
+      },
+      {
+        "type": "text",
+        "id": "promo_text4_subtext",
+        "label": "Subtext"
+      },
+      {
+        "type": "textarea",
+        "id": "promo_text4_svg",
+        "label": "SVG Icon Code",
+        "info": "Added in front of the text"
+      },
+      {
+        "type": "url",
+        "id": "promo_text4_url",
+        "label": "Link"
+      },
+      {
+        "type": "text",
+        "id": "promo_text4_url_label",
+        "label": "Link label"
+      },
+      {
+        "type": "header",
+        "content": "Promo Text 5",
+        "info": "Activated by adding the tag 'promo-text5'"
+      },
+      {
+        "type": "checkbox",
+        "id": "promo_text5",
+        "label": "Enable"
+      },
+      {
+        "type": "text",
+        "id": "promo_text5_text",
+        "label": "Text"
+      },
+      {
+        "type": "text",
+        "id": "promo_text5_subtext",
+        "label": "Subtext"
+      },
+      {
+        "type": "textarea",
+        "id": "promo_text5_svg",
+        "label": "SVG Icon Code",
+        "info": "Added in front of the text"
+      },
+      {
+        "type": "url",
+        "id": "promo_text5_url",
+        "label": "Link"
+      },
+      {
+        "type": "text",
+        "id": "promo_text5_url_label",
+        "label": "Link label"
+      }
+    ]
   }
 ]

@@ -118,16 +118,27 @@ jQuery(document).ready(function($){
 		$(".media-thumbnails").flickity("selectCell", activethumb.index());
 	});
 
-	$(".accordion .accordion-item .accordion-item-title").click(function(e) {
-		var item = $(this).parent();
+	// console.log($(".product-recommendations"));
+	// console.log($(".product-recommendations .product-grid"));
+	// if ($(window).width() < 750 && $(".product-recommendations .product-grid").length > 0) {
+	// 	for( var i = 0; i < $(".product-recommendations .product-grid").length; i ++ ) {
+	// 		var slider = $(".product-recommendations .product-grid").eq(i);
 
-		if (item.hasClass("active")) {
-			item.removeClass("active");
-			item.find(".accordion-item-text").slideUp(200);
-		}
-		else {
-			item.addClass("active");
-			item.find(".accordion-item-text").slideDown(200);
-		}
-	});
+	// 		slider.flickity({
+	// 			draggable: true,
+	// 			prevNextButtons: true,
+	// 			pageDots: false,
+	// 			contain: true,
+	// 			cellAlign: 'center',
+	// 			arrowShape: { 
+	// 			  x0: 10,
+	// 			  x1: 60, y1: 50,
+	// 			  x2: 70, y2: 40,
+	// 			  x3: 30
+	// 			}
+	// 		});
+
+	// 		slider.css("opacity", 1);
+	// 	}
+	// }
 });

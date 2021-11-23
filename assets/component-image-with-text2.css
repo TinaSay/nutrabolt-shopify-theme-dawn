@@ -1,0 +1,67 @@
+.image-with-text2 {
+	position: relative;
+	margin: 100px 0;
+}
+
+.image-with-text2 .image-with-text__grid {
+	overflow: visible;
+	background: #E8EAEE;
+}
+
+.image-with-text2 .image-with-text__grid .grid__item {
+	position: relative;
+}
+
+.image-with-text2 .image-with-text__grid .grid__item .media {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 100%;
+}
+
+.image-with-text2 .image-with-text__grid .grid__item .media img {
+	position: relative;
+    max-height: 440px;
+    margin-left: auto;
+    margin-right: auto;
+    width: auto;
+}
+
+.image-with-text2 .image-with-text__content .image-with-text__heading {
+	font-family: 'Anton';
+	text-transform: uppercase;
+}
+
+.image-with-text2 .image-with-text__content .button {
+	background: #ffe500;
+    border-color: #ffe500;
+    box-shadow: none;
+    color: #000;
+    font-family: 'Anton';
+    text-transform: uppercase;
+    letter-spacing: 0;
+    font-size: 18px;
+    padding-top: 16px;
+    padding-bottom: 14px;
+    line-height: 1;
+}
+
+@media screen and (max-width: 749px) {
+	.image-with-text2 .image-with-text__grid {
+		margin-top: 270px;
+	    padding-top: 60px;
+	}
+
+	.image-with-text2 .image-with-text__grid .grid__item .media {
+		top: -130px;
+	}
+
+	.image-with-text2 .image-with-text__grid .grid__item .media img {
+		width: 240px;
+	}
+
+	.image-with-text2 .image-with-text__content {
+		align-items: center;
+		text-align: center;
+	}
+}
