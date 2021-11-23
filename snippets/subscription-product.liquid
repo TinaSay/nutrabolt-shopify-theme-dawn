@@ -148,6 +148,7 @@
 	<!-- Subscriptions Powered by ReCharge Payments: HTML -->
 	<div id="rc_container" {% if subscription_only %}class="rc_subscription-only"{% endif %} >
 		<!-- <input type="hidden" name="" id="rc_subscription_id" value="1"> --> <!-- note: subscription_id property no longer required -->
+		<span class="benefit">{{ settings.recharge_discount_subtext }}</span>
 		<input type="hidden" name="" id="rc_shipping_interval_unit_type" value="{{ shipping_interval_unit_type }}">
 		<select id="rc_duplicate_selector" aria-hidden="true" class="styled replaced no-js" style="display: none;">
 			{% if variant_to_duplicate %}
@@ -181,7 +182,7 @@
 				<input type="radio" name="purchase_type" id="rc_purchase_type_autodeliver" value="autodeliver" {% if select_subscription_first %}checked{% endif %} class="rc_radio rc_radio__autodeliver" {% if subscription_only %}style="display: none;"{% endif %}>
 				{% unless subscription_only %}
 					<label for="rc_purchase_type_autodeliver" class="rc_label rc_label__autodeliver">
-						<span class="subscription-label">{{ label_autodeliver }}<br><span class="benefit">{{ settings.recharge_discount_subtext }}</span></span>
+						<span class="subscription-label">{{ label_autodeliver }}</span>
 						{% if discount_percentage > 0 %}
 							{% comment %}							
 							<span class="rc_label__discount" aria-label="subscription discount">({{ discount_percentage }}%):</span>

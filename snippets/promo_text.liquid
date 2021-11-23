@@ -1,0 +1,24 @@
+{%- for i in (1..5) -%} 
+  {%- assign promo_tag = "promo-text" | append: i -%}
+  {%- assign promo_text = promo_tag | replace: "-","_" -%}
+  {%- if product.tags contains promo_tag and settings[promo_text] -%}
+    {%- assign promo_text_text = promo_text | append: "_text" -%}
+    {%- assign promo_text_subtext = promo_text | append: "_subtext" -%}
+    {%- assign promo_text_svg = promo_text | append: "_svg" -%}
+    {%- assign promo_text_url = promo_text | append: "_url" -%}
+    {%- assign promo_text_url_label = promo_text | append: "_url_label" -%}
+      <div class="promo-text {{classes}}">
+        <div class="promo-text-text">
+          {%- if settings[promo_text_svg] != blank -%}{{settings[promo_text_svg]}} {% endif -%}
+          {{settings[promo_text_text]}}
+          {%- if settings[promo_text_url_label] != blank %} <a href="{{settings[promo_text_url]}}">{{settings[promo_text_url_label]}}</a>{% endif -%}
+        </div>
+        {% if settings[promo_text_subtext] != blank -%}
+        <div class="promo-text-subtext{%- if settings[promo_text_svg] != blank %} has-svg{% endif -%}">
+          {{settings[promo_text_subtext]}}
+        </div>
+        {%- endif %}
+      </div>
+    {%- break -%}
+  {%- endif -%}
+{%- endfor -%}
