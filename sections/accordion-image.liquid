@@ -5,12 +5,14 @@
     <div class="column-accordion accordion">
       {% for block in section.blocks %}
         {% if block.type == 'text' %}
-          <div class="accordion-item">
+          <div class="accordion-item {% if block.settings.open_by_default %} active {% endif %}">
             <div class="accordion-item-title"> {{block.settings.heading}} </div>
-            <div class="accordion-item-text" style="display: none;"> {{block.settings.text}} </div>
+            <div class="accordion-item-text" style="{% unless block.settings.open_by_default %} display: none; {% endunless %}"> {{block.settings.text}} </div>
           </div>
         {% endif %}
       {% endfor %}
+
+      <p class="comment">{{section.settings.comment}}</p>
     </div>
     <div class="column-image">
       {% for block in section.blocks %}
@@ -44,6 +46,11 @@
   "tag": "section",
   "class": "spaced-section spaced-section--full-width",
   "settings": [
+    {
+      "type": "textarea",
+      "id": "comment",
+      "label": "Comment"
+    }
   ],
   "blocks": [
     {
@@ -70,6 +77,11 @@
           "type": "textarea",
           "id": "text",
           "label": "Text"
+        },
+        {
+          "type": "checkbox",
+          "id": "open_by_default",
+          "label": "Open by Default"
         }
       ]
     }

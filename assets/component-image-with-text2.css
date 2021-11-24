@@ -46,6 +46,12 @@
     line-height: 1;
 }
 
+@media screen and (max-width: 768px) {
+	.image-with-text2 {
+		margin: 30px 0;
+	}
+}
+
 @media screen and (max-width: 749px) {
 	.image-with-text2 .image-with-text__grid {
 		margin-top: 270px;
@@ -63,5 +69,9 @@
 	.image-with-text2 .image-with-text__content {
 		align-items: center;
 		text-align: center;
+	}
+
+	.image-with-text2 {
+		margin: 0;
 	}
 }

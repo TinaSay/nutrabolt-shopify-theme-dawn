@@ -168,4 +168,30 @@ jQuery(document).ready(function($){
 	if($(".flavor_dropdown").length > 0) {
 		$(".flavor_dropdown input[type=radio]:checked+label").trigger("click");
 	}
+
+	$(document).on("click", ".accordion-item .accordion-item-title", function(e) {
+		var item = $(this).parent();
+
+		if (item.hasClass("active")) {
+			item.find(".accordion-item-text").slideUp(200);
+			item.removeClass("active");
+		}
+		else {
+			item.find(".accordion-item-text").slideDown(200);
+			item.addClass("active");
+		}
+	});
+
+	$(document).on("click", ".mobile_accordion-item .mobile_accordion-item-title", function(e) {
+		var item = $(this).parent();
+
+		if (item.hasClass("active")) {
+			item.find(".mobile_accordion-item-content").slideUp(200);
+			item.removeClass("active");
+		}
+		else {
+			item.find(".mobile_accordion-item-content").slideDown(200);
+			item.addClass("active");
+		}
+	});
 });

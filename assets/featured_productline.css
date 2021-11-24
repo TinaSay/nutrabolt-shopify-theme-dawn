@@ -106,6 +106,13 @@
 	border: solid 2px #000;
 	background: transparent;
 	margin-top: 20px;
+	border-radius: 5px;
+}
+
+.featured_productline .title {
+	text-align: center;
+    font-family: 'Anton';
+    font-size: 38px;
 }
 
 @media screen and (max-width: 991px) {

@@ -7,6 +7,10 @@
 	box-shadow: none;
 }
 
+.button {
+	border-radius: 5px;
+}
+
 #shopify-section-announcement-bar {
 	background: rgb(18, 18, 18);
 }
@@ -120,11 +124,30 @@
 	}
 }
 
+.header {
+	display: flex;
+	justify-content: space-between;
+}
+
+.header__icons {
+	padding-right: 3px;
+}
+
 .header .search-modal__content .search__input {
 	background: #FFF;
     border: none;
     box-shadow: none;
     border-radius: 5px;
+}
+
+.header .search-modal__content {
+	width: 50vw;
+	max-width: 600px;
+}
+
+.header .search-modal__content label {
+	font-family: Helvetica;
+	letter-spacing: 0;
 }
 
 .header .search-modal__content label[for='Search-In-Modal'] {
@@ -233,6 +256,7 @@
 	.header .search-modal__content {
 		padding-left: 2em;
 		padding-right: 2em;
+		width: 100%;
 	}
 
 	.header-drawer {
@@ -274,6 +298,14 @@
 	.header>.header__heading-link {
 	    width: calc(100% - 150px);
     	text-align: left;
+	}
+
+	.header__icons {
+		padding-right: 0;
+	}
+
+	.cart-count-bubble {
+		left: 14px;
 	}
 
 	.header__search .search-modal__content {
