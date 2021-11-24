@@ -6,6 +6,7 @@
 .accordion-image .wrapper .column-accordion {
 	width: 67%;
 	margin-top: 0;
+	border: none;
 }
 
 .accordion-item {
