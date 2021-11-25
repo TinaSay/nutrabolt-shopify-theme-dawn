@@ -34,7 +34,7 @@
 .card--text-only {
   display: flex;
   justify-content: center;
-}
+} 
 
 .card--text-only.card--product {
   position: static;

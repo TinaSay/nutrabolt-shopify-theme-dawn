@@ -1,6 +1,6 @@
 .image-with-text2 {
 	position: relative;
-	margin: 100px 0;
+	margin: 100px auto; 
 }
 
 .image-with-text2 .image-with-text__grid {
@@ -59,11 +59,11 @@
 	}
 
 	.image-with-text2 .image-with-text__grid .grid__item .media {
-		top: -130px;
+		top: -110px;
 	}
 
 	.image-with-text2 .image-with-text__grid .grid__item .media img {
-		width: 240px;
+		width: 90%;
 	}
 
 	.image-with-text2 .image-with-text__content {

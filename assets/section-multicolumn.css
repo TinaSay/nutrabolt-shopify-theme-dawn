@@ -309,8 +309,10 @@
 }
 
 .multicolumn-list__item.style5 .multicolumn-card .media {
-  padding: 0 !important;
-  width: 40px;
+  padding: 0!important;
+  font-family: 'Anton';
+  font-size: 26px;
+  line-height: 1.4;
 }
 
 .multicolumn-list__item.style5 .multicolumn-card .media img {
@@ -318,6 +320,11 @@
   transform: none;
   width: 40px;
   position: relative;
+}
+
+.multicolumn-list__item.style5 .multicolumn-card .media i {
+  position: relative;
+  font-size: 30px;
 }
 
 .multicolumn-list__item.style5 .multicolumn-card {

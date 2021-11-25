@@ -42,7 +42,13 @@
             {% if section.settings.image_ratio == 'adapt' and block.type == 'style3' %}
               style="background: {{block.settings.background}};"
             {% endif %}>
-              {%- if block.settings.image != blank -%}
+              {%- if block.settings.image_html != blank -%}
+                <div class="multicolumn-card__image-wrapper multicolumn-card__image-wrapper--{{ section.settings.image_width }}-width{% if section.settings.image_width != 'full' or spaced_image %} multicolumn-card-spacing{% endif %}" >
+                  <div class="media media--transparent media--{{ section.settings.image_ratio }}">
+                    {{block.settings.image_html}}
+                  </div>
+                </div>
+              {%- elsif block.settings.image != blank -%}
                 {% if section.settings.image_ratio == 'adapt' or section.settings.image_ratio == 'circle' %}
                   {% assign spaced_image = true %}
                 {% endif %}
@@ -347,6 +353,11 @@
           "type": "image_picker",
           "id": "image",
           "label": "Image"
+        },
+        {
+          "type": "textarea",
+          "id": "image_html",
+          "label": "Image HTML Code"
         },
         {
           "type": "text",
