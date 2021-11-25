@@ -64,6 +64,7 @@
 
 	.image-with-text2 .image-with-text__grid .grid__item .media img {
 		width: 90%;
+    	max-width: 340px;
 	}
 
 	.image-with-text2 .image-with-text__content {

@@ -34,7 +34,7 @@ jQuery(document).ready(function($){
 		});
 	}	
 
-	if($(window).width() < 768) {
+	if($(window).width() < 750) {
 		$(".multicolumn .slider").flickity({
 			draggable: draggable,
 			pageDots: true,
