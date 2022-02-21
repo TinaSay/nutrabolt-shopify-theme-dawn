@@ -6,6 +6,13 @@
 <div class="page-width{% if cart == empty %} is-empty{% endif %}" id="main-cart-footer" data-id="{{ section.id }}">
   <div>
     <div class="cart__footer">
+      <h1 class="cart__footer-title">Summary</h1>
+
+      <details class="cart__footer-promo-code">
+        <summary>Do you have a promo code?</summary>
+        <input name="promo_code" class="field__input" placeholder="PROMO CODE">
+      </details>
+
       {%- if section.settings.show_cart_note -%}
         <cart-note class="cart__note field">
           <label for="Cart-note">{{ 'sections.cart.note' | t }}</label>
@@ -20,7 +27,7 @@
               {% render block %}
             {%- when 'subtotal' -%}
               <div class="js-contents" {{ block.shopify_attributes }}>
-                <div class="totals">
+                <div class="totals subtotal__item">
                   <h3 class="totals__subtotal">{{ 'sections.cart.subtotal' | t }}</h3>
                   <p class="totals__subtotal-value">{{ cart.total_price | money_with_currency }}</p>
                 </div>
@@ -39,17 +46,22 @@
                   {%- endif -%}
                 </div>
 
-                <small class="tax-note caption-large rte">
-                  {%- if cart.taxes_included and shop.shipping_policy.body != blank -%}
-                    {{ 'sections.cart.taxes_included_and_shipping_policy_html' | t: link: shop.shipping_policy.url }}
-                  {%- elsif cart.taxes_included -%}
-                    {{ 'sections.cart.taxes_included_but_shipping_at_checkout' | t }}
-                  {%- elsif shop.shipping_policy.body != blank -%}
-                    {{ 'sections.cart.taxes_and_shipping_policy_at_checkout_html' | t: link: shop.shipping_policy.url }}
-                  {%- else -%}
-                    {{ 'sections.cart.taxes_and_shipping_at_checkout' | t }}
-                  {%- endif -%}
-                </small>
+                <div class="discount subtotal__item">
+                  <h3 class="discount__label">Discount</h3>
+                  <p class="discount__value">{{ cart.total_discounts | money }}</p>
+                </div>
+
+                <div class="shipping-type subtotal__item">
+                  <h3 class="shipping__label">Shipping</h3>
+                  <p class="shipping__value">TBD</p>
+                </div>
+              </div>
+
+              <div class="total__content">
+                <h3 class="total__label">Total</h3>
+                <h3 class="total__value">
+                  {{ cart.total_price | money }}
+                </h3>
               </div>
             {%- else -%}
               <div class="cart__ctas" {{ block.shopify_attributes }}>
@@ -69,10 +81,31 @@
                   {{ content_for_additional_checkout_buttons }}
                 </div>
               {%- endif -%}
+
+              <small class="tax-note caption-large rte text-center">
+                {%- if cart.taxes_included and shop.shipping_policy.body != blank -%}
+                  {{ 'sections.cart.taxes_included_and_shipping_policy_html' | t: link: shop.shipping_policy.url }}
+                {%- elsif cart.taxes_included -%}
+                  {{ 'sections.cart.taxes_included_but_shipping_at_checkout' | t }}
+                {%- elsif shop.shipping_policy.body != blank -%}
+                  {{ 'sections.cart.taxes_and_shipping_policy_at_checkout_html' | t: link: shop.shipping_policy.url }}
+                {%- else -%}
+                  {{ 'sections.cart.taxes_and_shipping_at_checkout' | t }}
+                {%- endif -%}
+              </small>
           {%- endcase -%}
         {% endfor %}
 
         <div id="cart-errors"></div>
+      </div>
+
+      <div class="cart-footer-icons">
+        <span class="icon-visacard">{% render 'icon-visacard' %}</span>
+        <span class="icon-mastercard">{% render 'icon-mastercard' %}</span>
+        <span class="icon-american-express">{% render 'icon-american-express' %}</span>
+        <span class="icon-paypal">{% render 'icon-paypal' %}</span>
+        <span class="icon-apple-pay">{% render 'icon-apple-pay' %}</span>
+        <span class="icon-google-pay">{% render 'icon-google-pay' %}</span>
       </div>
     </div>
   </div>
